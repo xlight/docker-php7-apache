@@ -30,6 +30,8 @@ RUN cd /root && unzip memcached.zip && rm memcached.zip && \
 
 RUN pecl install redis && docker-php-ext-enable redis
 
+RUN pecl install hprose && docker-php-ext-enable hprose
+
 # install php pdo_mysql
 RUN docker-php-ext-install pdo_mysql && \
   docker-php-ext-install bcmath
