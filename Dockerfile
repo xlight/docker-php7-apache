@@ -1,8 +1,9 @@
 FROM php:7-apache
 
-RUN apt-get update
-
-curl -sS https://getcomposer.org/installer | php && php composer.phar install --no-dev
+RUN php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" && \
+  php composer-setup.php && \
+  php -r "unlink('composer-setup.php');" && \
+  php composer.phar install --no-dev
 
 # Install modules : GD mcrypt iconv
 RUN apt-get install -y \
